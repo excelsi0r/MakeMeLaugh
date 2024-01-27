@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cn3xhnw0u1rla"]
+[gd_scene load_steps=17 format=3 uid="uid://cn3xhnw0u1rla"]
 
 [ext_resource type="Shader" path="res://Shaders/retro.gdshader" id="1_o5axm"]
-[ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="2_2u1ya"]
-[ext_resource type="PackedScene" uid="uid://d2vgv6ie0v40s" path="res://Levels/Main/L_Main.tscn" id="2_j5txf"]
+[ext_resource type="Shader" path="res://Shaders/crt2.gdshader" id="2_37j0v"]
+[ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="2_tubio"]
+[ext_resource type="Script" path="res://Levels/Main/L_Main.gd" id="4_w8b6w"]
+[ext_resource type="PackedScene" uid="uid://cyd8vxekdn22k" path="res://Blueprints/Tree.tscn" id="5_ky1k1"]
+[ext_resource type="Texture2D" uid="uid://cmbr0kn3xfca7" path="res://Textures/ground-01.png" id="5_xrgpy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2upni"]
 shader = ExtResource("1_o5axm")
@@ -11,19 +14,64 @@ shader_parameter/dithering = true
 shader_parameter/colors = 3
 shader_parameter/dither_size = 2
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6v1in"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_scek3"]
+sky_material = SubResource("ProceduralSkyMaterial_6v1in")
+
+[sub_resource type="Environment" id="Environment_2qfgx"]
+background_mode = 2
+sky = SubResource("Sky_scek3")
+sky_rotation = Vector3(3.48787e-16, 3.48787e-16, 3.48787e-16)
+ambient_light_sky_contribution = 0.21
+ambient_light_energy = 2.52
+tonemap_mode = 2
+ssao_enabled = true
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0395
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mgf26"]
-shader = ExtResource("2_2u1ya")
-shader_parameter/res = Vector2(1920, 1080)
-shader_parameter/mask_type = 2
-shader_parameter/bloom_type = 0
-shader_parameter/hardScan = -8.0
-shader_parameter/hardPix = -2.0
-shader_parameter/hardBloomScan = -2.0
-shader_parameter/hardBloomPix = -1.5
-shader_parameter/bloomAmount = 16.0
-shader_parameter/warp = Vector2(64, 24)
-shader_parameter/maskDark = 0.5
-shader_parameter/maskLight = 1.5
+shader = ExtResource("2_37j0v")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.0
+shader_parameter/roll_size = 2.64
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58yg0"]
+albedo_texture = ExtResource("5_xrgpy")
+uv1_scale = Vector3(1000, 1000, 1000)
+
+[sub_resource type="BoxMesh" id="BoxMesh_82lbn"]
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_doj2p"]
+data = PackedVector3Array(-500, 0.5, 500, 500, 0.5, 500, -500, -0.5, 500, 500, 0.5, 500, 500, -0.5, 500, -500, -0.5, 500, 500, 0.5, -500, -500, 0.5, -500, 500, -0.5, -500, -500, 0.5, -500, -500, -0.5, -500, 500, -0.5, -500, 500, 0.5, 500, 500, 0.5, -500, 500, -0.5, 500, 500, 0.5, -500, 500, -0.5, -500, 500, -0.5, 500, -500, 0.5, -500, -500, 0.5, 500, -500, -0.5, -500, -500, 0.5, 500, -500, -0.5, 500, -500, -0.5, -500, 500, 0.5, 500, -500, 0.5, 500, 500, 0.5, -500, -500, 0.5, 500, -500, 0.5, -500, 500, 0.5, -500, -500, -0.5, 500, 500, -0.5, 500, -500, -0.5, -500, 500, -0.5, 500, 500, -0.5, -500, -500, -0.5, -500)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m15ad"]
+size = Vector3(20, 20, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vesia"]
+data = PackedVector3Array(-10, 10, 0.5, 10, 10, 0.5, -10, -10, 0.5, 10, 10, 0.5, 10, -10, 0.5, -10, -10, 0.5, 10, 10, -0.5, -10, 10, -0.5, 10, -10, -0.5, -10, 10, -0.5, -10, -10, -0.5, 10, -10, -0.5, 10, 10, 0.5, 10, 10, -0.5, 10, -10, 0.5, 10, 10, -0.5, 10, -10, -0.5, 10, -10, 0.5, -10, 10, -0.5, -10, 10, 0.5, -10, -10, -0.5, -10, 10, 0.5, -10, -10, 0.5, -10, -10, -0.5, 10, 10, 0.5, -10, 10, 0.5, 10, 10, -0.5, -10, 10, 0.5, -10, 10, -0.5, 10, 10, -0.5, -10, -10, 0.5, 10, -10, 0.5, -10, -10, -0.5, 10, -10, 0.5, 10, -10, -0.5, -10, -10, -0.5)
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
 material = SubResource("ShaderMaterial_2upni")
@@ -34,6 +82,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 stretch = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2qfgx")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
@@ -48,4 +99,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="L_Main" parent="SubViewport" instance=ExtResource("2_j5txf")]
+[node name="Level" type="Node3D" parent="SubViewport"]
+script = ExtResource("4_w8b6w")
+
+[node name="Player" parent="SubViewport/Level" instance=ExtResource("2_tubio")]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, 0, 2.02692, -8.74852)
+speed = 2
+jump_height = 0
+
+[node name="Geometry" type="Node3D" parent="SubViewport/Level"]
+
+[node name="Floor" type="MeshInstance3D" parent="SubViewport/Level/Geometry"]
+material_override = SubResource("StandardMaterial3D_58yg0")
+mesh = SubResource("BoxMesh_82lbn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/Level/Geometry/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Level/Geometry/Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_doj2p")
+
+[node name="Wall" type="MeshInstance3D" parent="SubViewport/Level/Geometry"]
+mesh = SubResource("BoxMesh_m15ad")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport/Level/Geometry/Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/Level/Geometry/Wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_vesia")
+
+[node name="Trees" type="Node3D" parent="SubViewport/Level/Geometry"]
+
+[node name="Tree1" parent="SubViewport/Level/Geometry/Trees" instance=ExtResource("5_ky1k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49071, -4.80621)
+
+[node name="Tree2" parent="SubViewport/Level/Geometry/Trees" instance=ExtResource("5_ky1k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.12867, 0.49071, -6.98846)
+
+[node name="Tree3" parent="SubViewport/Level/Geometry/Trees" instance=ExtResource("5_ky1k1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4258, 0.49071, -10.6928)

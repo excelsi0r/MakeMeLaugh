@@ -15,6 +15,10 @@ run/main_scene="res://Levels/Level1/Level1tscn.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon2.png"
 
+[display]
+
+window/size/mode=2
+
 [input]
 
 move_forward={
@@ -90,5 +94,4 @@ look_right={
 
 [rendering]
 
-renderer/rendering_method="mobile"
 anti_aliasing/quality/msaa_3d=1

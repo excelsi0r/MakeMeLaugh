@@ -7,6 +7,7 @@ extends Node
 @export_node_path("Node3D") var head_path := NodePath("../Head")
 @onready var cam: Camera3D = get_node(head_path).cam
 
+@export var enable_sprint := true
 @export var sprint_speed := 16
 @export var fov_multiplier := 1.05
 @onready var normal_speed: int = controller.speed
@@ -15,7 +16,7 @@ extends Node
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
-	if can_sprint():
+	if can_sprint() and enable_sprint:
 		controller.speed = sprint_speed
 		cam.set_fov(lerp(cam.fov, normal_fov * fov_multiplier, delta * 8))
 	else:

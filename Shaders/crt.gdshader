@@ -19,6 +19,8 @@
 
 shader_type canvas_item;
 
+uniform bool enabled = true;
+
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 
@@ -265,15 +267,24 @@ float Bar(float pos, float bar){ pos -= bar; return pos * pos < 4.0 ? 0.0 : 1.0;
 
 // Entry.
 void fragment(){
-	vec2 pos = Warp(FRAGCOORD.xy / (1.0 / SCREEN_PIXEL_SIZE).xy);
+
+	if (enabled == true){
+		vec2 pos = Warp(FRAGCOORD.xy / (1.0 / SCREEN_PIXEL_SIZE).xy);
 	
-	COLOR.rgb = Tri(pos, SCREEN_TEXTURE) * Mask(FRAGCOORD.xy);
-	if (bloom_type == 0){ 
-		COLOR.rgb = mix(COLOR.rgb,Bloom(pos, SCREEN_TEXTURE), 1.0 / bloomAmount);    
-	}else if (bloom_type == 1){
-		COLOR.rgb += Bloom(pos, SCREEN_TEXTURE) * 1.0 / bloomAmount;    
-	} 
-	
-	COLOR.a = 1.0;  
-	COLOR.rgb = ToSrgb(COLOR.rgb);
+		COLOR.rgb = Tri(pos, SCREEN_TEXTURE) * Mask(FRAGCOORD.xy);
+		if (bloom_type == 0){ 
+			COLOR.rgb = mix(COLOR.rgb,Bloom(pos, SCREEN_TEXTURE), 1.0 / bloomAmount);    
+		}else if (bloom_type == 1){
+			COLOR.rgb += Bloom(pos, SCREEN_TEXTURE) * 1.0 / bloomAmount;    
+		} 
+		
+		COLOR.a = 1.0;  
+		COLOR.rgb = ToSrgb(COLOR.rgb);
+	}
+	else
+	{
+		COLOR.a = 0.0;  
+		COLOR.rgb = ToSrgb(COLOR.rgb);
+	}
+
 }

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyd8vxekdn22k"]
+
+[ext_resource type="Texture2D" uid="uid://ddwibcuji6q55" path="res://Textures/palm-tree-01.png" id="1_3oxjq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbnq0"]
+transparency = 1
+albedo_texture = ExtResource("1_3oxjq")
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_3gna4"]
+size = Vector2(5, 5)
+center_offset = Vector3(2.08165e-12, 2.5, 2.08165e-12)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jtr3w"]
+radius = 0.2
+height = 5.0
+
+[node name="Node3D" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_tbnq0")
+mesh = SubResource("QuadMesh_3gna4")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.5, 2.08165e-12)
+shape = SubResource("CapsuleShape3D_jtr3w")
