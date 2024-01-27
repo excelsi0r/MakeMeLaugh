@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ddwibcuji6q55" path="res://Textures/palm-tree-01.png" id="1_3oxjq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbnq0"]
-transparency = 1
+transparency = 4
 albedo_texture = ExtResource("1_3oxjq")
 billboard_mode = 2
 
