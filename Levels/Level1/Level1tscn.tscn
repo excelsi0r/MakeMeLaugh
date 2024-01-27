@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://cn3xhnw0u1rla"]
+
+[ext_resource type="Shader" path="res://Shaders/retro.gdshader" id="1_o5axm"]
+[ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="2_2u1ya"]
+[ext_resource type="PackedScene" uid="uid://d2vgv6ie0v40s" path="res://Levels/Main/L_Main.tscn" id="2_j5txf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2upni"]
+shader = ExtResource("1_o5axm")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 3
+shader_parameter/dither_size = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgf26"]
+shader = ExtResource("2_2u1ya")
+shader_parameter/res = Vector2(1920, 1080)
+shader_parameter/mask_type = 2
+shader_parameter/bloom_type = 0
+shader_parameter/hardScan = -8.0
+shader_parameter/hardPix = -2.0
+shader_parameter/hardBloomScan = -2.0
+shader_parameter/hardBloomPix = -1.5
+shader_parameter/bloomAmount = 16.0
+shader_parameter/warp = Vector2(64, 24)
+shader_parameter/maskDark = 0.5
+shader_parameter/maskLight = 1.5
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+material = SubResource("ShaderMaterial_2upni")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="CRT" type="ColorRect" parent="SubViewport"]
+material = SubResource("ShaderMaterial_mgf26")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="L_Main" parent="SubViewport" instance=ExtResource("2_j5txf")]

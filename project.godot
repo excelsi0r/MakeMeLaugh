@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="First Person Starter"
-run/main_scene="res://Levels/Main/L_Main.tscn"
+run/main_scene="res://Levels/Level1/Level1tscn.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon2.png"
 
