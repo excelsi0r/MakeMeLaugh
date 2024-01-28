@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://c328031ysjbtq"]
+[gd_scene load_steps=21 format=3 uid="uid://c328031ysjbtq"]
 
 [ext_resource type="FontFile" uid="uid://xkuwfqql61j5" path="res://Fonts/Minecraft.ttf" id="1_ajeic"]
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_fmh8k"]
 [ext_resource type="Shader" path="res://Shaders/retro.gdshader" id="2_0xxq2"]
 [ext_resource type="Shader" path="res://Shaders/crt2.gdshader" id="2_yfy13"]
 [ext_resource type="PackedScene" uid="uid://ovi4os86wi45" path="res://Levels/Level1/geometry.tscn" id="3_5iqhf"]
-[ext_resource type="Script" path="res://Scripts/SubViewportController.gd" id="3_56ldt"]
 [ext_resource type="Script" path="res://Scripts/MenuButtonController.gd" id="5_he16i"]
 [ext_resource type="AudioStream" uid="uid://1gd2daxxv400" path="res://Sound/analog-button.mp3" id="5_xjlka"]
 
@@ -99,7 +98,6 @@ stretch = true
 handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
-script = ExtResource("3_56ldt")
 
 [node name="MarginContainer" type="MarginContainer" parent="SubViewportContainer/SubViewport"]
 anchors_preset = 15
