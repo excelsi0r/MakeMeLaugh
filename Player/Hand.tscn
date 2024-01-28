@@ -13,4 +13,4 @@ light_volumetric_fog_energy = 16.0
 light_projector = ExtResource("2_6cc05")
 shadow_enabled = true
 spot_range = 9.389
-spot_angle = 25.91
+spot_angle = 49.55
