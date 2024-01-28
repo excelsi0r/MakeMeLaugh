@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://cn3xhnw0u1rla"]
+
+[ext_resource type="Shader" path="res://Shaders/retro.gdshader" id="1_o5axm"]
+[ext_resource type="Shader" path="res://Shaders/crt2.gdshader" id="2_37j0v"]
+[ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="2_tubio"]
+[ext_resource type="Script" path="res://Levels/Main/L_Main.gd" id="4_w8b6w"]
+[ext_resource type="PackedScene" uid="uid://ovi4os86wi45" path="res://Levels/Level1/geometry.tscn" id="5_urlfx"]
+[ext_resource type="AudioStream" uid="uid://id1rsai543bi" path="res://Sound/ominous-ambient-sound.mp3" id="15_t4cpy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2upni"]
+shader = ExtResource("1_o5axm")
+shader_parameter/enabled = true
+shader_parameter/dithering = true
+shader_parameter/colors = 8
+shader_parameter/dither_size = 2
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5ovei"]
+sky_energy_multiplier = 0.0
+ground_bottom_color = Color(0, 0, 0.235294, 1)
+ground_horizon_color = Color(0.427451, 0, 0.552941, 1)
+ground_curve = 0.069644
+
+[sub_resource type="Sky" id="Sky_bn5ef"]
+sky_material = SubResource("ProceduralSkyMaterial_5ovei")
+
+[sub_resource type="Environment" id="Environment_6pp2n"]
+background_mode = 2
+sky = SubResource("Sky_bn5ef")
+sky_rotation = Vector3(3.48787e-16, 3.48787e-16, 3.14159)
+ssao_enabled = true
+volumetric_fog_density = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mgf26"]
+shader = ExtResource("2_37j0v")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.0
+shader_parameter/roll_size = 2.64
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+material = SubResource("ShaderMaterial_2upni")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+stretch = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6pp2n")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="CRT" type="ColorRect" parent="SubViewport"]
+material = SubResource("ShaderMaterial_mgf26")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level" type="Node3D" parent="SubViewport"]
+script = ExtResource("4_w8b6w")
+
+[node name="Player" parent="SubViewport/Level" instance=ExtResource("2_tubio")]
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, -3.48787e-16, -3.48787e-16, 3.48787e-16, 1, -3.24852, 1, -0.591549)
+speed = 3
+jump_height = 0
+
+[node name="Geometry" parent="SubViewport/Level" instance=ExtResource("5_urlfx")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/Level"]
+stream = ExtResource("15_t4cpy")
+autoplay = true
