@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://do56u60tq074l"]
+
+[ext_resource type="PackedScene" uid="uid://dmujc0w46ks8q" path="res://Blueprints/MemeTemplate.tscn" id="1_d6725"]
+[ext_resource type="Texture2D" uid="uid://dsx1k5ra6wb6l" path="res://Textures/taxes.png" id="2_m28wr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_diucy"]
+transparency = 4
+albedo_texture = ExtResource("2_m28wr")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_u4hhm"]
+material = SubResource("StandardMaterial3D_diucy")
+
+[node name="Meme" instance=ExtResource("1_d6725")]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="0"]
+mesh = SubResource("QuadMesh_u4hhm")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" parent="." index="1"]
+visible = false

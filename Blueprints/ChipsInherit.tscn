@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://de1p84vlrjpac"]
+
+[ext_resource type="PackedScene" uid="uid://dmujc0w46ks8q" path="res://Blueprints/MemeTemplate.tscn" id="1_6fvwx"]
+[ext_resource type="Texture2D" uid="uid://d0yeidurir3ws" path="res://Textures/chips.png" id="2_6aj7v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rne43"]
+transparency = 4
+albedo_texture = ExtResource("2_6aj7v")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_5pmn0"]
+material = SubResource("StandardMaterial3D_rne43")
+
+[node name="Meme" instance=ExtResource("1_6fvwx")]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="0"]
+mesh = SubResource("QuadMesh_5pmn0")
+
+[node name="MeshInstance3D" parent="." index="1"]
+visible = false

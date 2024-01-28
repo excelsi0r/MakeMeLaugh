@@ -8,12 +8,16 @@ class_name MovementController
 @export var deceleration := 10
 @export_range(0.0, 1.0, 0.05) var air_control := 0.3
 @export var jump_height := 10
+@export var info: Label
+
 var direction := Vector3()
 var input_axis := Vector2()
 # Get the gravity from the project settings to be synced with RigidDynamicBody nodes.
 @onready var gravity: float = (ProjectSettings.get_setting("physics/3d/default_gravity") 
 		* gravity_multiplier)
 
+var maxObjects := 3
+var currObjects := 0
 
 # Called every physics tick. 'delta' is constant
 func _physics_process(delta: float) -> void:
@@ -32,6 +36,8 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+func _ready():
+	info.text = "Curent objects: " + str(currObjects) + "/" + str(maxObjects)
 
 func direction_input() -> void:
 	direction = Vector3()
@@ -61,4 +67,9 @@ func accelerate(delta: float) -> void:
 	velocity.z = temp_vel.z
 	
 func count_one():
-	print("+1")
+	currObjects = currObjects + 1
+	info.text = "Curent objects: " + str(currObjects) + "/" + str(maxObjects)
+	if currObjects >= maxObjects:
+		info.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		info.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		info.text = "Congratulations, game is finished!"
