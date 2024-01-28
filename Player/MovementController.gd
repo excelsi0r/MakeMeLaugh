@@ -59,3 +59,6 @@ func accelerate(delta: float) -> void:
 	
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
+	
+func count_one():
+	print("+1")
