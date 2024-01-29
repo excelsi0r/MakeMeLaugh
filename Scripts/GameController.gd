@@ -12,7 +12,7 @@ extends Node
 
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://Levels/Level1/Level1.tscn")
+	get_tree().change_scene_to_file("res://Levels/Tutorial/Tutorial.tscn")
 	pass # Replace with function body.
 
 

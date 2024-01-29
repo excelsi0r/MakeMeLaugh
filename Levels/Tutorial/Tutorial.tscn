@@ -1,16 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqwm056ipyeh7"]
+[gd_scene load_steps=8 format=3 uid="uid://cqwm056ipyeh7"]
 
+[ext_resource type="Script" path="res://Scripts/TextScrollingController.gd" id="1_88glm"]
+[ext_resource type="FontFile" uid="uid://dvrwmpaqqtnif" path="res://Fonts/kongtext.ttf" id="1_f2si7"]
 [ext_resource type="Shader" path="res://Shaders/crt2.gdshader" id="2_g03do"]
-[ext_resource type="FontFile" uid="uid://xkuwfqql61j5" path="res://Fonts/Minecraft.ttf" id="3_e6w8c"]
 
 [sub_resource type="FontVariation" id="FontVariation_2lf1r"]
-base_font = ExtResource("3_e6w8c")
-spacing_glyph = 2
+base_font = ExtResource("1_f2si7")
 
 [sub_resource type="LabelSettings" id="LabelSettings_r1th4"]
-line_spacing = 2.08165e-12
+line_spacing = 4.0
 font = SubResource("FontVariation_2lf1r")
-font_size = 75
+font_size = 55
 
 [sub_resource type="LabelSettings" id="LabelSettings_xxtfv"]
 line_spacing = 2.08165e-12
@@ -33,7 +33,7 @@ shader_parameter/distort_intensity = 0.002
 shader_parameter/noise_opacity = 0.4
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.06
-shader_parameter/aberration = 0.00200005
+shader_parameter/aberration = 0.00100005
 shader_parameter/brightness = 1.4
 shader_parameter/discolor = true
 shader_parameter/warp_amount = 0.0
@@ -42,6 +42,7 @@ shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
 [node name="Tutorial" type="Node"]
+script = ExtResource("1_88glm")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -49,9 +50,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 300
-theme_override_constants/margin_top = 300
-theme_override_constants/margin_right = 300
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 200
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -61,8 +62,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(2.08165e-12, 120)
 layout_mode = 2
 size_flags_vertical = 3
-text = "[ 19██/██/██ ]
-"
+text = "[ 19██/██/██ ]"
 label_settings = SubResource("LabelSettings_r1th4")
 autowrap_mode = 1
 
@@ -70,8 +70,7 @@ autowrap_mode = 1
 custom_minimum_size = Vector2(2.08165e-12, 120)
 layout_mode = 2
 size_flags_vertical = 3
-text = "You are ███████, a scientist going to a remote tropical island in the  █████████. 
-"
+text = "You are ███████, a scientist going to a remote tropical island in the  █████████."
 label_settings = SubResource("LabelSettings_r1th4")
 autowrap_mode = 1
 
@@ -79,8 +78,7 @@ autowrap_mode = 1
 custom_minimum_size = Vector2(2.08165e-12, 120)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Your objective: ████████. However, little did you know about the mysteries that reside on this land.
-"
+text = "Your objective: ████████. However, little did you know about the mysteries that reside on this land."
 label_settings = SubResource("LabelSettings_r1th4")
 autowrap_mode = 1
 
@@ -88,8 +86,7 @@ autowrap_mode = 1
 custom_minimum_size = Vector2(2.08165e-12, 120)
 layout_mode = 2
 size_flags_vertical = 3
-text = "On your way, the helicopter suddently starts mysteriously malfunctioning. The pilot tells you to strap in as you are going to crash... Only you survived.
-"
+text = "On your way, the helicopter suddently starts mysteriously malfunctioning. The pilot tells you to strap in as you are going to crash... Only you survived."
 label_settings = SubResource("LabelSettings_r1th4")
 autowrap_mode = 1
 
@@ -97,7 +94,7 @@ autowrap_mode = 1
 custom_minimum_size = Vector2(2.08165e-12, 120)
 layout_mode = 2
 size_flags_vertical = 3
-text = "You are cold, soaked, fatigued, hungry and scared. However, something about this island tells you to take a relaxing and calm hike..."
+text = "You are freezing, soaked, fatigued, hungry and scared. However, something about this island tells you to take a relaxing and calm hike..."
 label_settings = SubResource("LabelSettings_r1th4")
 autowrap_mode = 1
 
@@ -105,7 +102,7 @@ autowrap_mode = 1
 custom_minimum_size = Vector2(2.08165e-12, 120)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Follow the signs with [ WASD ], look with [MOUSE], read the information and enjoy the trip."
+text = "Follow the signs with [ WASD ], look with [ MOUSE ], read the information and enjoy the trip."
 label_settings = SubResource("LabelSettings_r1th4")
 autowrap_mode = 1
 
@@ -116,7 +113,7 @@ size_flags_vertical = 3
 text = "Press < space > to continue..."
 label_settings = SubResource("LabelSettings_xxtfv")
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="CRT" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_8r8lt")
@@ -126,3 +123,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CursorOn" type="Timer" parent="."]
+one_shot = true
+
+[node name="CursorOff" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="reveal_chars"]
+[connection signal="timeout" from="CursorOn" to="." method="cursor_on"]
+[connection signal="timeout" from="CursorOff" to="." method="curor_off"]

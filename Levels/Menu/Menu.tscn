@@ -1,10 +1,10 @@
 [gd_scene load_steps=21 format=3 uid="uid://c328031ysjbtq"]
 
-[ext_resource type="FontFile" uid="uid://xkuwfqql61j5" path="res://Fonts/Minecraft.ttf" id="1_ajeic"]
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_fmh8k"]
 [ext_resource type="Shader" path="res://Shaders/retro.gdshader" id="2_0xxq2"]
 [ext_resource type="Shader" path="res://Shaders/crt2.gdshader" id="2_yfy13"]
 [ext_resource type="PackedScene" uid="uid://ovi4os86wi45" path="res://Levels/Level1/geometry.tscn" id="3_5iqhf"]
+[ext_resource type="FontFile" uid="uid://dvrwmpaqqtnif" path="res://Fonts/kongtext.ttf" id="3_i1i8x"]
 [ext_resource type="Script" path="res://Scripts/MenuButtonController.gd" id="5_he16i"]
 [ext_resource type="AudioStream" uid="uid://1gd2daxxv400" path="res://Sound/analog-button.mp3" id="5_xjlka"]
 
@@ -16,8 +16,8 @@ shader_parameter/colors = 12
 shader_parameter/dither_size = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_1uggu"]
-font = ExtResource("1_ajeic")
-font_size = 220
+font = ExtResource("3_i1i8x")
+font_size = 200
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3sow"]
 content_margin_top = 20.0
@@ -38,8 +38,8 @@ content_margin_top = 20.0
 content_margin_bottom = 20.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_txf5t"]
-font = ExtResource("1_ajeic")
-font_size = 80
+font = ExtResource("3_i1i8x")
+font_size = 50
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uew5x"]
 shader = ExtResource("2_yfy13")
@@ -130,8 +130,8 @@ alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
-theme_override_fonts/font = ExtResource("1_ajeic")
-theme_override_font_sizes/font_size = 120
+theme_override_fonts/font = ExtResource("3_i1i8x")
+theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxEmpty_u3sow")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_5ovtv")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_cud1g")
@@ -145,8 +145,8 @@ script = ExtResource("5_he16i")
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
-theme_override_fonts/font = ExtResource("1_ajeic")
-theme_override_font_sizes/font_size = 120
+theme_override_fonts/font = ExtResource("3_i1i8x")
+theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rgtmh")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_5ovtv")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_cud1g")
