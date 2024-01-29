@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cn3xhnw0u1rla"]
+[gd_scene load_steps=11 format=3 uid="uid://cn3xhnw0u1rla"]
 
 [ext_resource type="Shader" path="res://Shaders/retro.gdshader" id="1_o5axm"]
 [ext_resource type="Shader" path="res://Shaders/crt2.gdshader" id="2_37j0v"]
 [ext_resource type="PackedScene" uid="uid://bdupkh0grwy27" path="res://Player/Player.tscn" id="2_tubio"]
 [ext_resource type="Script" path="res://Levels/Main/L_Main.gd" id="4_w8b6w"]
 [ext_resource type="PackedScene" uid="uid://ovi4os86wi45" path="res://Levels/Level1/geometry.tscn" id="5_urlfx"]
-[ext_resource type="AudioStream" uid="uid://id1rsai543bi" path="res://Sound/ominous-ambient-sound.mp3" id="15_t4cpy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2upni"]
 shader = ExtResource("1_o5axm")
@@ -89,7 +88,3 @@ speed = 3
 jump_height = 0
 
 [node name="Geometry" parent="SubViewport/Level" instance=ExtResource("5_urlfx")]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/Level"]
-stream = ExtResource("15_t4cpy")
-autoplay = true

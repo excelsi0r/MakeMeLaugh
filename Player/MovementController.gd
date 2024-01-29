@@ -30,7 +30,10 @@ func _physics_process(delta: float) -> void:
 	
 	accelerate(delta)
 	
+	walk_sound()
+
 	move_and_slide()
+
 
 #func _ready():
 #	pass
@@ -61,3 +64,12 @@ func accelerate(delta: float) -> void:
 	
 	velocity.x = temp_vel.x
 	velocity.z = temp_vel.z
+
+func is_idle():
+	return input_axis.x == 0.0 and input_axis.y == 0.0
+
+func walk_sound():
+	if not is_idle() and $Timer.time_left <= 0:
+		$AudioStreamPlayer.pitch_scale = randf_range(0.7, 1.0)
+		$AudioStreamPlayer.play()
+		$Timer.start(0.6)

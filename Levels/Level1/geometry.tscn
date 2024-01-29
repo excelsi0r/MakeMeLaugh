@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ovi4os86wi45"]
+[gd_scene load_steps=10 format=3 uid="uid://ovi4os86wi45"]
 
 [ext_resource type="PackedScene" uid="uid://cyd8vxekdn22k" path="res://Blueprints/Tree.tscn" id="1_p8v0t"]
 [ext_resource type="PackedScene" uid="uid://bh0jp757kmrnj" path="res://Blueprints/Fence.tscn" id="2_qodiv"]
@@ -6,6 +6,9 @@
 [ext_resource type="Terrain3DMaterial" uid="uid://d4bqtqbtsvmll" path="res://Terrain/new_terrain_3d_material.tres" id="4_w7x21"]
 [ext_resource type="Terrain3DTextureList" uid="uid://lupnptyl66ll" path="res://Terrain/new_terrain_3d_texture_list.tres" id="5_li4dh"]
 [ext_resource type="AudioStream" uid="uid://id1rsai543bi" path="res://Sound/ominous-ambient-sound.mp3" id="6_b2iub"]
+[ext_resource type="AudioStream" uid="uid://msupgqakv4qp" path="res://Sound/jungle-background-sound.mp3" id="7_k4xmw"]
+[ext_resource type="AudioStream" uid="uid://eb5rhrjtseka" path="res://Sound/realistic-trex-sound-small.mp3" id="8_ejemp"]
+[ext_resource type="Script" path="res://Scripts/AudioStreamPlayerController.gd" id="8_qry05"]
 
 [node name="Geometry" type="Node3D"]
 
@@ -635,3 +638,19 @@ texture_list = ExtResource("5_li4dh")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_b2iub")
 autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_k4xmw")
+volume_db = -19.488
+pitch_scale = 0.78
+autoplay = true
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ejemp")
+volume_db = -6.559
+script = ExtResource("8_qry05")
+
+[node name="Timer" type="Timer" parent="AudioStreamPlayer3"]
+one_shot = true
+
+[connection signal="timeout" from="AudioStreamPlayer3/Timer" to="AudioStreamPlayer3" method="_on_timer_timeout"]

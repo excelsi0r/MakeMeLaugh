@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdupkh0grwy27"]
+[gd_scene load_steps=6 format=3 uid="uid://bdupkh0grwy27"]
 
 [ext_resource type="PackedScene" uid="uid://lqyku5wn2wo0" path="res://Player/MovementController.tscn" id="1_t1jcr"]
 [ext_resource type="PackedScene" uid="uid://b8drbos167vf8" path="res://Player/Head.tscn" id="2_41iu1"]
 [ext_resource type="PackedScene" uid="uid://byp5c6hrhietn" path="res://Player/Hand.tscn" id="3_8dkd8"]
 [ext_resource type="Script" path="res://Player/Sprint.gd" id="3_bgqcu"]
+[ext_resource type="AudioStream" uid="uid://cx74i724k7wmo" path="res://Sound/single-footstep.mp3" id="5_6xv6x"]
 
 [node name="Player" instance=ExtResource("1_t1jcr")]
 
@@ -14,3 +15,10 @@
 [node name="Sprint" type="Node" parent="." index="3"]
 script = ExtResource("3_bgqcu")
 enable_sprint = false
+
+[node name="Timer" type="Timer" parent="." index="4"]
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource("5_6xv6x")
+volume_db = -20.0

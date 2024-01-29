@@ -160,6 +160,7 @@ script = ExtResource("5_he16i")
 [node name="HoverSound" type="AudioStreamPlayer" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/VBoxContainer/ButtoButtons"]
 stream = ExtResource("5_xjlka")
 volume_db = -16.541
+pitch_scale = 0.4
 
 [node name="Author" type="Label" parent="SubViewportContainer/SubViewport/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
