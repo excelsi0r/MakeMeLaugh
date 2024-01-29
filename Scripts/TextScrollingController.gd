@@ -34,6 +34,7 @@ func reveal_chars():
 
 	# Verify I have yet to iterate labels
 	cursor_on()
+	key_sound()
 	if currLabel < len(labels):
 		labels[currLabel].text = labels[currLabel].text.insert(currCursorPos, labels_text[currLabel][currCursorPos])
 		currCursorPos += 1
@@ -41,6 +42,7 @@ func reveal_chars():
 			currLabel += 1
 			currCursorPos = 0
 			reset_timer(timeBetweenParagraphs)
+			$EnterTimer.start(cursorBlink)
 		else:
 			reset_timer(randf_range(minTime, maxTime))
 		
@@ -76,8 +78,10 @@ func curor_off():
 	labels[tmpLabel].text = labels[tmpLabel].text.substr(0, tmpCurrCursor) + negativeCursor
 	cursor_on_timer.start(cursorBlink)
 
+func key_sound():
+	$KeySound.pitch_scale = randf_range(0.9, 1.2)
+	$KeySound.play()
 
-
-	
-
-	
+func enter_new_line():
+	$KeySound.pitch_scale = 0.5
+	$KeySound.play()

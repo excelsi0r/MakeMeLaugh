@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqwm056ipyeh7"]
+[gd_scene load_steps=10 format=3 uid="uid://cqwm056ipyeh7"]
 
 [ext_resource type="Script" path="res://Scripts/TextScrollingController.gd" id="1_88glm"]
 [ext_resource type="FontFile" uid="uid://dvrwmpaqqtnif" path="res://Fonts/kongtext.ttf" id="1_f2si7"]
 [ext_resource type="Shader" path="res://Shaders/crt2.gdshader" id="2_g03do"]
+[ext_resource type="AudioStream" uid="uid://fm3edg2rpjuq" path="res://Sound/single-key-01.wav" id="4_twjot"]
+[ext_resource type="AudioStream" uid="uid://317e2b1cbsgu" path="res://Sound/tv-static-7019.mp3" id="5_t1aar"]
 
 [sub_resource type="FontVariation" id="FontVariation_2lf1r"]
 base_font = ExtResource("1_f2si7")
@@ -133,6 +135,19 @@ one_shot = true
 [node name="CursorOff" type="Timer" parent="."]
 one_shot = true
 
+[node name="KeySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_twjot")
+volume_db = -13.082
+
+[node name="EnterTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Static" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_t1aar")
+volume_db = -18.706
+autoplay = true
+
 [connection signal="timeout" from="Timer" to="." method="reveal_chars"]
 [connection signal="timeout" from="CursorOn" to="." method="cursor_on"]
 [connection signal="timeout" from="CursorOff" to="." method="curor_off"]
+[connection signal="timeout" from="EnterTimer" to="." method="enter_new_line"]
