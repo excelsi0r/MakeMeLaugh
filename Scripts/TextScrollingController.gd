@@ -73,7 +73,6 @@ func curor_off():
 	elif tmpCurrCursor == 0 and tmpLabel - 1 >= 0:
 		labels[tmpLabel-1].text = labels[tmpLabel-1].text.substr(0, len(labels_text[tmpLabel-1])) + negativeCursor
 		
-
 	
 	labels[tmpLabel].text = labels[tmpLabel].text.substr(0, tmpCurrCursor) + negativeCursor
 	cursor_on_timer.start(cursorBlink)

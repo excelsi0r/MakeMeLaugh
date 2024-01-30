@@ -1,0 +1,49 @@
+[gd_scene load_steps=11 format=3 uid="uid://bwd787j50nm77"]
+
+[ext_resource type="Texture2D" uid="uid://btxfwbwqunyxk" path="res://Textures/plaque-base.png" id="1_f2tfg"]
+[ext_resource type="Texture2D" uid="uid://cw8b0mwboy32f" path="res://Textures/correct-way-pr.png" id="2_0aeiv"]
+[ext_resource type="Texture2D" uid="uid://qw2jgip78uhj" path="res://Textures/bad-way-pr.png" id="3_l6wba"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0byfb"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_f2tfg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1ykgo"]
+material = SubResource("StandardMaterial3D_0byfb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wg6fo"]
+transparency = 1
+albedo_texture = ExtResource("2_0aeiv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_rpldq"]
+material = SubResource("StandardMaterial3D_wg6fo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yp5dj"]
+transparency = 1
+albedo_texture = ExtResource("3_l6wba")
+
+[sub_resource type="QuadMesh" id="QuadMesh_t34mr"]
+material = SubResource("StandardMaterial3D_yp5dj")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_seb08"]
+radius = 0.273757
+height = 1.22106
+
+[node name="Plaque1" type="MeshInstance3D"]
+transform = Transform3D(0.695675, 0, 1.54017, 0, 1.69, 0, -1.54017, 0, 0.695675, -16.8777, 0.774461, -4.3075)
+mesh = SubResource("QuadMesh_1ykgo")
+skeleton = NodePath("../..")
+
+[node name="Front" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, -1.28845e-08, 0, 0.25, 0, 1.28845e-08, 0, 0.25, 2.08165e-12, 0.2, 0.01)
+mesh = SubResource("QuadMesh_rpldq")
+
+[node name="Back" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25, 8.71967e-17, -2.18557e-08, 8.71967e-17, 0.25, -8.71967e-17, 2.18557e-08, -8.71967e-17, -0.25, 2.08165e-12, 0.2, -0.01)
+mesh = SubResource("QuadMesh_t34mr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CapsuleShape3D_seb08")

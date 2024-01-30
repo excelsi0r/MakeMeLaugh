@@ -1,0 +1,48 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnwietovoh3q"]
+
+[ext_resource type="Texture2D" uid="uid://btxfwbwqunyxk" path="res://Textures/plaque-base.png" id="1_ulkrw"]
+[ext_resource type="Texture2D" uid="uid://qw2jgip78uhj" path="res://Textures/bad-way-pr.png" id="2_o5n7o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0byfb"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_ulkrw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1ykgo"]
+material = SubResource("StandardMaterial3D_0byfb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wg6fo"]
+transparency = 1
+albedo_texture = ExtResource("2_o5n7o")
+
+[sub_resource type="QuadMesh" id="QuadMesh_rpldq"]
+material = SubResource("StandardMaterial3D_wg6fo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yp5dj"]
+transparency = 1
+albedo_texture = ExtResource("2_o5n7o")
+
+[sub_resource type="QuadMesh" id="QuadMesh_t34mr"]
+material = SubResource("StandardMaterial3D_yp5dj")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_seb08"]
+radius = 0.273757
+height = 1.22106
+
+[node name="Plaque3" type="MeshInstance3D"]
+transform = Transform3D(0.0890662, 0, -1.68765, 0, 1.69, 0, 1.68765, 0, 0.0890662, -6.63716, 0.774461, -35.6822)
+mesh = SubResource("QuadMesh_1ykgo")
+skeleton = NodePath("../..")
+
+[node name="Front" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, -7.90277e-09, 0, 0.25, 0, 6.56469e-09, 0, 0.25, 3.57628e-07, 0.2, 0.0100002)
+mesh = SubResource("QuadMesh_rpldq")
+
+[node name="Back" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.25, 8.71967e-17, -2.18557e-08, 8.71967e-17, 0.25, -8.71967e-17, 2.18557e-08, -8.71967e-17, -0.25, 2.08165e-12, 0.2, -0.01)
+mesh = SubResource("QuadMesh_t34mr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CapsuleShape3D_seb08")

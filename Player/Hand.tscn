@@ -7,10 +7,9 @@
 script = ExtResource("1_fjmit")
 
 [node name="Flashlight" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.08165e-12, 2.08165e-12)
-light_energy = 2.09
-light_volumetric_fog_energy = 16.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 2.08165e-12, 2.08165e-12)
+light_energy = 6.063
 light_projector = ExtResource("2_6cc05")
 shadow_enabled = true
-spot_range = 9.389
-spot_angle = 49.55
+spot_range = 9.935
+spot_angle = 36.08

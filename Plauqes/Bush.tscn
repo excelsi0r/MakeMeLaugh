@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://6f6a0pnq8uio"]
+
+[ext_resource type="Texture2D" uid="uid://bighl2kqborrf" path="res://Textures/bush-01.png" id="1_7b17w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhqo3"]
+transparency = 4
+albedo_texture = ExtResource("1_7b17w")
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_rq3c4"]
+material = SubResource("StandardMaterial3D_vhqo3")
+
+[node name="Bush01" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.756, 0.5, 2.08165e-12)
+mesh = SubResource("QuadMesh_rq3c4")

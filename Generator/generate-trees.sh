@@ -11,9 +11,9 @@ for i in {1..200}
 do
     x=$(($RANDOM%($max-$min+1)+$min))
     y=$(($RANDOM%($max-$min+1)+$min))
-    template="[node name=\"Tree$i\" parent=\"SubViewport/Level/Geometry/Trees\" instance=ExtResource(\"5_ky1k1\")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, $x, 0, $y)" 
-    echo $template >> out.txt
+    template="[node name=\"Bush$i\" parent=\"Bush\" instance=ExtResource(\"14_6nsp7\")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, $x, 0.5, $y)"
+    echo "$template" >> out.txt
     echo "" >> out.txt
 done
 
