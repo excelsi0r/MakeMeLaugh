@@ -104,7 +104,7 @@ autowrap_mode = 1
 custom_minimum_size = Vector2(2.08165e-12, 120)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Follow the signs with [ WASD ], look with [ MOUSE ], read the information and enjoy the trip."
+text = "Follow the signs with [ WASD ], look with [ MOUSE ], quit with [ ESC ], read the information and enjoy the trip."
 label_settings = SubResource("LabelSettings_r1th4")
 autowrap_mode = 1
 
